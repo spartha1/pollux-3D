@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\ThreeDModel;
@@ -9,12 +10,14 @@ use Illuminate\Support\Facades\Storage;
 use App\Services\StlMetadataService;
 use Illuminate\Support\Facades\Log;
 
+
 class ModelController extends Controller
 {
     protected $metadataService;
 
     public function __construct(StlMetadataService $metadataService)
     {
+        $this->middleware('auth');
         $this->metadataService = $metadataService;
     }
 
